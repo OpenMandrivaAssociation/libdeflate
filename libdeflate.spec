@@ -1,12 +1,11 @@
 Name:          libdeflate
-Version:       1.9
+Version:       1.14
 Release:       %autorelease
 Summary:       Fast implementation of DEFLATE, gzip, and zlib
 License:       MIT
 URL:           https://github.com/ebiggers/libdeflate
-Source0:       https://github.com/ebiggers/%{name}/archive/v%{version}.tar.gz
+Source0:       https://github.com/ebiggers/%{name}/archive/v%{version}/%{name}-%{version}.tar.gz
 
-BuildRequires: gcc
 BuildRequires: make
 
 %description
@@ -53,6 +52,3 @@ rm %{buildroot}/%{_libdir}/*.a
 %files utils
 %{_bindir}/libdeflate-gzip
 %{_bindir}/libdeflate-gunzip
-
-%changelog
-%autochangelog
