@@ -4,7 +4,7 @@
 %define devname %mklibname -d deflate %{api}
 
 Name:          libdeflate
-Version:       1.14
+Version:       1.15
 Release:       1
 Summary:       Fast implementation of DEFLATE, gzip, and zlib
 License:       MIT
