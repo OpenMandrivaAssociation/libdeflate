@@ -12,6 +12,7 @@ URL:           https://github.com/ebiggers/libdeflate
 Source0:       https://github.com/ebiggers/%{name}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires: make
+BuildRequires: cmake
 
 %description
 libdeflate is a library for fast, whole-buffer DEFLATE-based compression and
@@ -42,15 +43,14 @@ Binaries from libdeflate.
 
 
 %prep
-%autosetup
-sed -r -i 's/-O2 -fomit-frame-pointer -std=c99/-std=c99/' Makefile
+%autosetup -p1
 
 %build
-%make_build CFLAGS="%optflags -fpic -pie -g" USE_SHARED_LIB=1 LIBDIR=%{_libdir} PREFIX=%{_prefix}
+%cmake
+%make_build
 
 %install
-%make_install CFLAGS="%optflags -fpic -pie -g" USE_SHARED_LIB=1 LIBDIR=%{_libdir} PREFIX=%{_prefix}
-rm %{buildroot}/%{_libdir}/*.a
+%make_install -C build
 
 %files -n %{libname}
 %doc NEWS.md README.md
