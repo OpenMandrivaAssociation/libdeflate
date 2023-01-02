@@ -46,7 +46,7 @@ Binaries from libdeflate.
 %autosetup -p1
 
 %build
-%cmake
+%cmake -DLIBDEFLATE_BUILD_STATIC_LIB=OFF
 %make_build
 
 %install
@@ -61,6 +61,7 @@ Binaries from libdeflate.
 %{_includedir}/libdeflate.h
 %{_libdir}/libdeflate.so
 %{_libdir}/pkgconfig/*
+%{_libdir}/cmake/libdeflate/
 
 %files utils
 %{_bindir}/libdeflate-gzip
