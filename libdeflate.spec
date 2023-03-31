@@ -5,7 +5,7 @@
 
 Name:          libdeflate
 Version:       1.17
-Release:       1
+Release:       2
 Summary:       Fast implementation of DEFLATE, gzip, and zlib
 License:       MIT
 URL:           https://github.com/ebiggers/libdeflate
