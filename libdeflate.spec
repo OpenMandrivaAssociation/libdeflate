@@ -1,18 +1,20 @@
+%global optflags %{optflags} -O3
+
 %define api 0
 
 %define libname %mklibname deflate %{api}
 %define devname %mklibname -d deflate %{api}
 
-Name:          libdeflate
-Version:       1.17
-Release:       2
-Summary:       Fast implementation of DEFLATE, gzip, and zlib
-License:       MIT
-URL:           https://github.com/ebiggers/libdeflate
-Source0:       https://github.com/ebiggers/%{name}/archive/v%{version}/%{name}-%{version}.tar.gz
-
-BuildRequires: make
-BuildRequires: cmake
+Summary:	Fast implementation of DEFLATE, gzip, and zlib
+Name:		libdeflate
+Version:	1.18
+Release:	1
+License:	MIT
+Group:		System/Libraries
+URL:		https://github.com/ebiggers/libdeflate
+Source0:	https://github.com/ebiggers/%{name}/archive/v%{version}/%{name}-%{version}.tar.gz
+BuildRequires:	ninja
+BuildRequires:	cmake
 
 %description
 libdeflate is a library for fast, whole-buffer DEFLATE-based compression and
@@ -20,37 +22,40 @@ decompression, supporting DEFLATE, gzip, and zlib.
 
 
 %package -n %{libname}
-Summary:        Shared library for %{name}
+Summary:	Shared library for %{name}
+Group:		System/Libraries
 
 %description -n %{libname}
 C library providing a GtkWidget to display maps.
 This package contains the shared library files.
 
 %package -n %{devname}
-Summary:        Development files for %{name}
+Summary:	Development files for %{name}
 Requires:	%{libname} = %{version}-%{release}
 
 %description -n %{devname}
 Development files for libdeflate.
 
 %package utils
-Summary:       Binaries from libdeflate
-License:       MIT
-Requires:	%{libname} = %{version}-%{release}
+Summary:	Binaries from libdeflate
+Group:		Archiving/Compression
+Requires:	%{libname} = %{EVRD}
 
 %description utils
 Binaries from libdeflate.
-
 
 %prep
 %autosetup -p1
 
 %build
-%cmake -DLIBDEFLATE_BUILD_STATIC_LIB=OFF
-%make_build
+%cmake \
+	-DLIBDEFLATE_BUILD_STATIC_LIB=OFF \
+	-G Ninja
+
+%ninja_build
 
 %install
-%make_install -C build
+%ninja_install -C build
 
 %files -n %{libname}
 %doc NEWS.md README.md
