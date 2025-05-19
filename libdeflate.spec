@@ -7,7 +7,7 @@
 
 Summary:	Fast implementation of DEFLATE, gzip, and zlib
 Name:		libdeflate
-Version:	1.23
+Version:	1.24
 Release:	1
 License:	MIT
 Group:		System/Libraries
